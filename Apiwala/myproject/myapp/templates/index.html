@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Text Extractor</title>
+</head>
+<body>
+    <h1>Upload a PDF to Extract Text</h1>
+    <form id="pdfForm">
+        <label for="uploadFile">Upload PDF:</label>
+        <input type="file" name="uploadFile" id="uploadFile" accept=".pdf" required>
+        <button type="submit">Extract Text</button>
+    </form>
+
+    <h2>Extracted Text:</h2>
+    <div id="result" style="white-space: pre-wrap; border: 1px solid #ccc; padding: 10px;"></div>
+
+    <script>
+        document.getElementById('pdfForm').addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent default form submission
+            
+            const fileInput = document.getElementById('uploadFile');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert("Please select a PDF file to upload!");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('file', file); // Key should match the field name in your serializer
+
+            try {
+                // Call the API using fetch
+                const response = await fetch('http://127.0.0.1:8000/api/upload-pdf/', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status}`);
+                }
+
+                const result = await response.json();
+                document.getElementById('result').textContent = result.extracted_text || "No text extracted.";
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('result').textContent = "Failed to extract text. Please try again.";
+            }
+        });
+    </script>
+</body>
+</html>
