@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>PDF Comparison</h1>
+    <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>Upload Output PDF:</label>
+    <input type="file" name="output_pdf" required>
+    <label>Upload Model Answer PDF:</label>
+    <input type="file" name="model_pdf" required>
+    <button type="submit">Compare</button>
+</form>
+
+</body>
+</html>

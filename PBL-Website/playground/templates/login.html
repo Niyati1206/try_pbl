@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <style>
+        .login-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            padding: 3rem;
+            background-color: #f9f9f9;
+        }
+
+        .login-image {
+            flex: 1;
+            max-width: 500px;
+        }
+
+        .login-image img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        .login-form {
+            flex: 1;
+            max-width: 400px;
+        }
+
+        .login-form h2 {
+            margin-bottom: 1.5rem;
+            color: #8a6653;
+            font-weight: bold;
+        }
+
+        .login-form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .login-form button {
+            width: 100%;
+            background-color: #CB997E;
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .login-form button:hover {
+            background-color: #b0836e;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <!-- Reuse the Navbar -->
+        <nav class="navbar navbar-expand-md navbar-light">
+            <div class="container-fluid">
+                <div></div>
+                <img style="height:45px; width: 45px;" src="../static/images/image-1-tke.png" />
+                <a class="navbar-brand" style="color: #8a6653; font-weight: bold; margin-left: 100px;" href="/">
+                    AI Evaluator
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #DDBEA9;" aria-current="page" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #DDBEA9; margin-left: 25px;" href="/about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" style="color: #DDBEA9; margin-left: 25px;" href="/contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <div style="margin-right: 100px;">
+                    <a href="/register" class="btn btn-light ms-3" style="border-radius: 20px; border-color: #CB997E; width: 80px;">Register</a>
+                </div>
+            </div>
+        </nav>
+        <hr style="margin: 0;" />
+    </div>
+
+    <section class="login-container">
+        <div class="login-image">
+            <img src="../static/images/grammar correction-rafiki.svg" alt="Login Illustration">
+        </div>
+        <div class="login-form">
+            <h2>Login</h2>
+            <form method="post" action="{% url 'login' %}">
+                {% csrf_token %}
+                <input type="email" name="email" placeholder="Email ID" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Reuse the Footer -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-logo">
+                <img src="../static/images/image-1-tke.png" alt="Lab Tracker Logo" />
+                <h1>AI based<br />Paper Evaluator</h1>
+            </div>
+            <div class="footer-navigation">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="social-media">
+                <a href="https://facebook.com"><img src="../static/images/social-media-icon-square-facebook.png"
+                        alt="Facebook" /></a>
+                <a href="https://twitter.com"><img src="../static/images/social-media-icon-square-twitter.png"
+                        alt="Twitter" /></a>
+                <a href="https://instagram.com"><img src="../static/images/social-media-icon-square-instagram.png"
+                        alt="Instagram" /></a>
+                <a href="https://linkedin.com"><img src="../static/images/social-media-icon-square-linkedin.png"
+                        alt="LinkedIn" /></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 Lab Tracker. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

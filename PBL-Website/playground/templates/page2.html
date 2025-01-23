@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/react@17/umd/react.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@17/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-router-dom/umd/react-router-dom.min.js"></script>
+</head>
+<style>
+    .hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+
+}
+
+.hero .hero-content {
+  max-width: 50%;
+}
+
+.hero h2 {
+  font-weight: bold;
+  font-size: 2.5rem;
+  margin-left: 2rem;
+  margin-bottom: 1rem;
+  color: #486284;
+  /* color: #8a6653; */
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-left: 2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.hero .main-button {
+    margin-left: 2rem;
+ background-color: #CB997E;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.hero img {
+  max-width: 40%;
+  border-radius: 8px;
+}
+/* About Section */
+/* About Section */
+.about {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: #fad8c6;
+}
+
+.about-image {
+    flex: 1;
+    max-width: 500px;
+    border-radius: 8px;
+}
+
+.about-content {
+    flex: 2;
+    text-align: left;
+    max-width: 600px;
+}
+
+.about h2 {
+    font-size: 2.5rem;
+    color: #004080;
+    margin-bottom: 1rem;
+}
+
+.about p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555;
+    margin-top: 0; /* Ensure no extra spacing between heading and paragraph */
+}
+/* Scoped styles for Evaluate Section */
+/* Scoped styles for Evaluate Section */
+.evaluate-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  position: relative;
+}
+
+
+.evaluate-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  border: 2px dashed #ccc;
+  border-radius: 10px;
+  background-color: white;
+  z-index: 1; /* Ensure it appears above the blue strip */
+  padding: 30px;
+  box-sizing: border-box;
+}
+
+.evaluate-content {
+  text-align: center;
+}
+
+.evaluate-content h1 {
+  font-size: 28px;
+  color: #007aa4;
+  margin-bottom: 20px;
+}
+
+.evaluate-content form {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.evaluate-content form div {
+  margin-bottom: 15px;
+}
+
+.evaluate-content form label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.evaluate-content form input,
+.evaluate-content form textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.evaluate-content button {
+  display: inline-block;
+  background-color: #e5b769;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 30px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.evaluate-content button:hover {
+  background-color: #d9a757;
+}
+
+
+/* Footer */
+.footer {
+  background-color: #ffffff;
+  color: #CB997E;
+  padding: 1.5rem 2rem;
+}
+
+.footer .footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.footer .footer-logo img {
+  max-width: 50px;
+}
+
+.footer .footer-logo h1 {
+  margin: 0;
+}
+.footer .footer-navigation{
+  text-align: center;
+  margin-right: 8rem;
+}
+.footer .footer-navigation a {
+
+  margin: 0 0.5rem;
+  color: #CB997E;
+  text-decoration: none;
+}
+
+.footer .footer-navigation a:hover {
+  text-decoration: underline;
+}
+
+.footer .social-media a {
+  margin: 0 0.5rem;
+}
+
+.footer .social-media img {
+  max-width: 30px;
+}
+
+
+.footer .footer-bottom {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+</style>
+<body>
+    <div>
+        <nav class="navbar navbar-expand-md navbar-light">
+          <div class="container-fluid">
+            <div>
+            </div>
+            <img style="height:45px; width: 45px;" src="../static/images/image-1-tke.png"/>
+            <a class="navbar-brand" style="color: #8a6653; font-weight: bold; margin-left: 100px;" href="/">
+              AI Evaluator
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link" style="color: #DDBEA9;" aria-current="page" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" style="color: #DDBEA9; margin-left: 25px;" href="/about">About</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" style="color: #DDBEA9; margin-left: 25px;" href="/contact">Contact</a>
+                </li>
+              </ul>
+            </div>
+            <div style="margin-right: 100px;">
+              <div id="auth-buttons">
+                <a href="/createuser" class="btn btn-light ms-3" style="border-radius: 20px; border-color: #CB997E; width: 80px; transition: background-color 0.3s;">Signup</a>
+                <a href="/login" class="btn btn-light ms-3" style="border-radius: 20px; border-color: #CB997E; width: 80px;">Login</a>
+              </div>
+              <div id="logout-buttons" style="display: none;">
+                <a href="/profile" class="btn btn-light ms-3" style="border-radius: 20px; border-color: #CB997E; width: 90px; transition: background-color 0.3s;">MyProfile</a>
+                <button onclick="handleLogout()" class="btn btn-light ms-3" style="border-radius: 20px; border-color: #CB997E; width: 90px;">Logout</button>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <hr style="margin: 0;" />
+      </div>
+
+  
+    <section class="evaluate-section">
+      <div class="evaluate-container">
+        <div class="blue-strip left"></div>
+        <div class="blue-strip right"></div>
+        <div class="evaluate-content">
+          <h1>Student Answer Key Upload</h1>
+          <form method="post" enctype="multipart/form-data" action="{% url 'student_answer_upload' %}">
+            {% csrf_token %}
+            <div>
+                <label for="name">Course code </label>
+                <input type="text" id="course_code" name="course_code" placeholder="Enter the course code">
+              </div>
+            <div>
+              <label for="name">Roll no.</label>
+              <input type="number" id="roll_number" name="roll_number" placeholder="Enter the roll no.">
+            </div>
+            <div>
+              <label for="name">Student name </label>
+              <input type="text" id="student_name" name="student_name" placeholder="Enter your student name">
+            </div>  
+            <div>
+              <label for="modelpdf">Section A student answer</label>
+              <input type="file" id="section_a_answer" name="section_a_answer" accept=".pdf">
+            </div>
+            <div>
+              <label for="modelpdf">Section B student answer</label>
+              <input type="file" id="section_b_answer" name="section_b_answer"  accept=".pdf">
+            </div>
+ 
+            <div>
+              <label for="modelpdf">Section C student answer</label>
+              <input type="file" id="section_c_answer" name="section_c_answer" accept=".pdf">
+            </div>
+
+            <button type="submit">Evaluate</button>
+          </form>
+        </div>
+      </div>
+    </section>    
+  <footer class="footer">
+    <div class="footer-top">
+        <div class="footer-logo">
+            <img src="../static/images/image-1-tke.png" alt="Lab Tracker Logo" />
+            <h1>AI based<br />Paper Evaluator</h1>
+        </div>
+        <div class="footer-navigation">
+            <a href="home.html">Home</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="social-media">
+            <a href="https://facebook.com"><img src="../static/images/social-media-icon-square-facebook.png"
+                    alt="Facebook" /></a>
+            <a href="https://twitter.com"><img src="../static/images/social-media-icon-square-twitter.png"
+                    alt="Twitter" /></a>
+            <a href="https://instagram.com"><img src="../static/images/social-media-icon-square-instagram.png"
+                    alt="Instagram" /></a>
+            <a href="https://linkedin.com"><img src="../static/images/social-media-icon-square-linkedin.png"
+                    alt="LinkedIn" /></a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2023 Lab Tracker. All Rights Reserved.</p>
+    </div>
+</footer>
+
+</body>
+</html>
