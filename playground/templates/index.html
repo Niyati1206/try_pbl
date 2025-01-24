@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF Text Extractor</title>
+</head>
+<body>
+    <h1>Upload PDFs to Extract Text</h1>
+    <form id="pdfForm">
+        <label for="uploadFile1">Upload PDF 1:</label>
+        <input type="file" name="uploadFile1" id="uploadFile1" accept=".pdf" required><br><br>
+
+        <label for="uploadFile2">Upload PDF 2:</label>
+        <input type="file" name="uploadFile2" id="uploadFile2" accept=".pdf" required><br><br>
+
+        <label for="uploadFile3">Upload PDF 3:</label>
+        <input type="file" name="uploadFile3" id="uploadFile3" accept=".pdf" required><br><br>
+
+        <button type="submit">Extract Text</button>
+    </form>
+
+    <h2>Extracted Text:</h2>
+    <div id="result1" style="white-space: pre-wrap; border: 1px solid #ccc; padding: 10px; margin-top: 10px;">
+        <h3>PDF 1:</h3>
+    </div>
+    <div id="result2" style="white-space: pre-wrap; border: 1px solid #ccc; padding: 10px; margin-top: 10px;">
+        <h3>PDF 2:</h3>
+    </div>
+    <div id="result3" style="white-space: pre-wrap; border: 1px solid #ccc; padding: 10px; margin-top: 10px;">
+        <h3>PDF 3:</h3>
+    </div>
+
+    <script>
+       document.getElementById('pdfForm').addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent default form submission
+
+    const formData = new FormData();
+    const fileInputs = [document.getElementById('uploadFile1'), document.getElementById('uploadFile2'), document.getElementById('uploadFile3')];
+
+    fileInputs.forEach((input, index) => {
+        if (input.files[0]) {
+            formData.append('files', input.files[0]); // Add each file to the formData
+        }
+    });
+
+    try {
+        const response = await fetch('http://127.0.0.1:8000/api/upload-pdf/', {
+            method: 'POST',
+            body: formData,
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+            document.getElementById('result1').textContent = result.extracted_texts.file1.text || "No text extracted.";
+            document.getElementById('result2').textContent = result.extracted_texts.file2.text || "No text extracted.";
+            document.getElementById('result3').textContent = result.extracted_texts.file3.text || "No text extracted.";
+        } else {
+            console.error(result.error);
+            alert("Failed to upload PDFs and extract text.");
+        }
+    } catch (error) {
+        console.error('Error:', error);
+        alert("An error occurred while uploading the files.");
+    }
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,218 @@
+/* General Styles */
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  line-height: 1.6;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Header */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #004080;
+  color: white;
+}
+
+.header .logo img {
+  max-width: 50px;
+}
+
+.header .logo h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.header .navigation a {
+  margin: 0 1rem;
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.header .navigation a:hover {
+  text-decoration: underline;
+}
+
+.header .auth-buttons a {
+  margin: 0 0.5rem;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.header .auth-buttons .signup-button {
+  background-color: white;
+  color: #004080;
+  border: 1px solid #004080;
+}
+
+.header .auth-buttons .login-button {
+  background-color: #004080;
+  color: white;
+  border: 1px solid white;
+}
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  background-color: #e6f7ff;
+}
+
+.hero .hero-content {
+  max-width: 50%;
+}
+
+.hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #004080;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+.hero .main-button {
+  background-color: #004080;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.hero img {
+  max-width: 40%;
+  border-radius: 8px;
+}
+
+/* Features Section */
+.features {
+  padding: 2rem;
+  background-color: #fff;
+}
+
+.features h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #004080;
+}
+
+.features .feature {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.features .feature img {
+  max-width: 150px;
+  margin-right: 1rem;
+}
+
+.features .feature h3 {
+  font-size: 1.5rem;
+  color: #004080;
+}
+
+.features .feature p {
+  margin: 0;
+}
+
+/* About Section */
+.about {
+  padding: 2rem;
+  background-color: #f2f2f2;
+  text-align: center;
+}
+
+.about h2 {
+  margin-bottom: 1rem;
+  color: #004080;
+}
+
+.about p {
+  max-width: 800px;
+  margin: 0 auto;
+  color: #555;
+}
+
+/* How It Works Section */
+.how-it-works {
+  padding: 2rem;
+  background-color: #fff;
+}
+
+.how-it-works h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #004080;
+}
+
+.how-it-works ol {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+}
+
+.how-it-works ol li {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+/* Footer */
+.footer {
+  background-color: #004080;
+  color: white;
+  padding: 1.5rem 2rem;
+}
+
+.footer .footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.footer .footer-logo img {
+  max-width: 50px;
+}
+
+.footer .footer-logo h1 {
+  margin: 0;
+}
+
+.footer .footer-navigation a {
+  margin: 0 0.5rem;
+  color: white;
+  text-decoration: none;
+}
+
+.footer .footer-navigation a:hover {
+  text-decoration: underline;
+}
+
+.footer .social-media a {
+  margin: 0 0.5rem;
+}
+
+.footer .social-media img {
+  max-width: 30px;
+}
+
+.footer .footer-bottom {
+  text-align: center;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}

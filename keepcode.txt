@@ -1,0 +1,84 @@
+ document.getElementById('pdfForm').addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent default form submission
+
+            const file1 = document.getElementById('uploadFile1').files[0];
+            const file2 = document.getElementById('uploadFile2').files[0];
+            const file3 = document.getElementById('uploadFile3').files[0];
+
+            if (!file1 || !file2 || !file3) {
+                alert("Please select all three PDF files to upload!");
+                return;
+            }
+
+            const files = [file1, file2, file3]; // Array of files
+            const results = ['result1', 'result2', 'result3']; // Corresponding result divs
+
+            for (let i = 0; i < files.length; i++) {
+                const formData = new FormData();
+                formData.append('file', files[i]); // Key should match the field name in your serializer
+
+                try {
+                    // Call the API for each file
+                    const response = await fetch('http://127.0.0.1:8000/api/upload-pdf/', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`Error: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    document.getElementById(results[i]).textContent = result.extracted_text || "No text extracted.";
+                } catch (error) {
+                    console.error('Error:', error);
+                    document.getElementById(results[i]).textContent = "Failed to extract text. Please try again.";
+                }
+            }
+        });
+
+
+
+        action="{% url 'upload_model_answer'%}
+
+
+
+
+
+
+
+
+
+        ------------------
+         document.getElementById('pdfForm').addEventListener('submit', async (event) => {
+event.preventDefault(); // Prevent default form submission
+
+const formData = new FormData();
+const fileInputs = [document.getElementById('uploadFile1'), document.getElementById('uploadFile2'), document.getElementById('uploadFile3')];
+
+fileInputs.forEach((input, index) => {
+   if (input.files[0]) {
+       formData.append('files', input.files[0]); // Add each file to the formData
+   }
+});
+
+try {
+   const response = await fetch('http://127.0.0.1:8000/api/upload-pdf/', {
+       method: 'POST',
+       body: formData,
+   });
+
+   const result = await response.json();
+   if (response.ok) {
+       document.getElementById('result1').textContent = result.extracted_texts.file1.text || "No text extracted.";
+       document.getElementById('result2').textContent = result.extracted_texts.file2.text || "No text extracted.";
+       document.getElementById('result3').textContent = result.extracted_texts.file3.text || "No text extracted.";
+   } else {
+       console.error(result.error);
+       alert("Failed to upload PDFs and extract text.");
+   }
+} catch (error) {
+   console.error('Error:', error);
+   alert("An error occurred while uploading the files.");
+}
+});
