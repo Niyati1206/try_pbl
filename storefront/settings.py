@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'playground',
-    'apis'
+    'rest_framework',
+    'apis',
+    'studentapi'
 ]
 
 AUTHENTICATON_BACKENDS=[
@@ -87,6 +89,10 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+import os
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # Password validation
@@ -118,10 +124,10 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-import os
+# import os
 
-MEDIA_URL = '/media/'  # URL prefix for media files
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Directory to store uploaded files
+# MEDIA_URL = '/media/'  # URL prefix for media files
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Directory to store uploaded files
 
 
 # Static files (CSS, JavaScript, Images)

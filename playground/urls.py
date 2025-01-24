@@ -11,11 +11,13 @@ urlpatterns= [
     path('logout/', views.logout_view,name='logout'),
     path("image-to-pdf/", views.image_to_pdf, name="image_to_pdf"),
     path("pdf-comparison/", views.pdf_comparison, name="pdf_comparison"),
-    path('upload-model-answer/', views.upload_model_answer, name='upload_model_answer'),
-    path('upload-student-answers/', views.upload_student_answer, name='student_answer_upload'),
+   # path('upload-model-answer/', views.upload_model_answer, name='upload_model_answer'),
+    #path('upload-student-answer/', views.upload_student_answer, name='student_answer_upload'),
     path('upload-success/', views.success, name='success'),
     path('upload/', upload_pdf_view, name='upload-pdf-form'),
     # API endpoint for uploading and processing the PDF
+     path('api/upload-model-answer/', views.upload_model_answer, name='upload_model_answer'),
+    path('api/upload-student-answer/', views.upload_student_answer, name='upload_student_answer'),
     path('api/upload-pdf/', PDFUploadView.as_view(), name='upload-pdf-api'),
 ]
 if settings.DEBUG:

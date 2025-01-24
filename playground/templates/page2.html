@@ -259,46 +259,55 @@
         <hr style="margin: 0;" />
       </div>
 
-  
-    <section class="evaluate-section">
-      <div class="evaluate-container">
-        <div class="blue-strip left"></div>
-        <div class="blue-strip right"></div>
-        <div class="evaluate-content">
-          <h1>Student Answer Key Upload</h1>
-          <form method="post" enctype="multipart/form-data" action="{% url 'student_answer_upload' %}">
-            {% csrf_token %}
-            <div>
-                <label for="name">Course code </label>
+      <section class="evaluate-section">
+        <div class="evaluate-container">
+          <div class="blue-strip left"></div>
+          <div class="blue-strip right"></div>
+          <div class="evaluate-content">
+            <h1>Student Answer Key Upload</h1>
+            <form method="POST" enctype="multipart/form-data" action="api/upload-student-answer/">
+              {% csrf_token %}
+              <div>
+                <label for="course_code">Course code</label>
                 <input type="text" id="course_code" name="course_code" placeholder="Enter the course code">
               </div>
-            <div>
-              <label for="name">Roll no.</label>
-              <input type="number" id="roll_number" name="roll_number" placeholder="Enter the roll no.">
+              <div>
+                <label for="roll_number">Roll no.</label>
+                <input type="number" id="roll_number" name="roll_number" placeholder="Enter the roll no.">
+              </div>
+              <div>
+                <label for="student_name">Student name</label>
+                <input type="text" id="student_name" name="student_name" placeholder="Enter your student name">
+              </div>
+              <div>
+                <label for="section_a_answer">Section A student answer</label>
+                <input type="file" id="section_a_answer" name="section_a_answer" accept=".pdf">
+              </div>
+              <div>
+                <label for="section_b_answer">Section B student answer</label>
+                <input type="file" id="section_b_answer" name="section_b_answer" accept=".pdf">
+              </div>
+              <div>
+                <label for="section_c_answer">Section C student answer</label>
+                <input type="file" id="section_c_answer" name="section_c_answer" accept=".pdf">
+              </div>
+              <button type="button" id="showTextStudent">Show Text</button>
+            </form>
+            <h2>Extracted Text:</h2>
+            <div id="resultA" style="white-space: pre-wrap; border: 1px solid #ccc; padding: 10px; margin-top: 10px;">
+              <h3>Section A:</h3>
             </div>
-            <div>
-              <label for="name">Student name </label>
-              <input type="text" id="student_name" name="student_name" placeholder="Enter your student name">
-            </div>  
-            <div>
-              <label for="modelpdf">Section A student answer</label>
-              <input type="file" id="section_a_answer" name="section_a_answer" accept=".pdf">
+            <div id="resultB" style="white-space: pre-wrap; border: 1px solid #ccc; padding: 10px; margin-top: 10px;">
+              <h3>Section B:</h3>
             </div>
-            <div>
-              <label for="modelpdf">Section B student answer</label>
-              <input type="file" id="section_b_answer" name="section_b_answer"  accept=".pdf">
+            <div id="resultC" style="white-space: pre-wrap; border: 1px solid #ccc; padding: 10px; margin-top: 10px;">
+              <h3>Section C:</h3>
             </div>
- 
-            <div>
-              <label for="modelpdf">Section C student answer</label>
-              <input type="file" id="section_c_answer" name="section_c_answer" accept=".pdf">
-            </div>
-
-            <button type="submit">Evaluate</button>
-          </form>
+          </div>
+          <button type="button" id="submitButtonStudent">Submit</button>
         </div>
-      </div>
-    </section>    
+      </section>
+       
   <footer class="footer">
     <div class="footer-top">
         <div class="footer-logo">
@@ -325,6 +334,46 @@
         <p>&copy; 2023 Lab Tracker. All Rights Reserved.</p>
     </div>
 </footer>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  // Student answer extraction event
+  document.getElementById('showTextStudent').addEventListener('click', async () => {
+    const formData = new FormData();
+    formData.append('course_code', document.getElementById('course_code').value);
+    formData.append('roll_number', document.getElementById('roll_number').value);
+    formData.append('student_name', document.getElementById('student_name').value);
+    
+    // Append PDF files for each section
+    formData.append('section_a_answer', document.getElementById('section_a_answer').files[0]);
+    formData.append('section_b_answer', document.getElementById('section_b_answer').files[0]);
+    formData.append('section_c_answer', document.getElementById('section_c_answer').files[0]);
 
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/upload-student-answer/', {  // updated endpoint
+  method: 'POST',
+  body: formData,
+});
+
+
+      const result = await response.json();
+      if (response.ok) {
+        // Display extracted text for each section
+        document.getElementById('resultA').textContent = result.extracted_texts.section_a_answer.text || "No text extracted.";
+        document.getElementById('resultB').textContent = result.extracted_texts.section_b_answer.text || "No text extracted.";
+        document.getElementById('resultC').textContent = result.extracted_texts.section_c_answer.text || "No text extracted.";
+      } else {
+        alert("Failed to extract text.");
+      }
+    } catch (error) {
+      alert("An error occurred.");
+    }
+  });
+
+  document.getElementById("submitButtonStudent").addEventListener("click", function () {
+    document.querySelector("form").submit();
+  });
+});
+
+</script>
 </body>
 </html>

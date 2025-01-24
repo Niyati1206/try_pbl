@@ -280,8 +280,9 @@
         <div class="evaluate-content">
           <h1>Model Answer Key Upload</h1>
           <!-- <form id="pdfForm" method="post" enctype="multipart/form-data" action="{% url 'upload_model_answer' %}"> -->
-            <form id="uploadForm" method="POST" enctype="multipart/form-data" action="/api/upload-pdf/">
+            <form id="uploadForm" method="POST" enctype="multipart/form-data" action="{% url 'upload_model_answer' %}">
             {% csrf_token %}
+            {{ form.as_p }}
             <div>
               <label for="course_code">Course code</label>
               <input type="text" id="course_code" name="course_code" placeholder="Enter the course code" required />
@@ -453,10 +454,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    document.getElementById('submitButton').addEventListener('click', () => {
-    // Submit the form to the backend
-    document.getElementById('pdfForm').submit();
-  });
+    document.getElementById("submitButton").addEventListener("click", function () {
+  document.getElementById("uploadForm").submit();
+});
 });
 
 </script>

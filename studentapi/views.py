@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FormParser
 from .serializers import PDFUploadSerializer
-from .models import ExtractedText
+from .models import StudentExtractedText
 import PyPDF2
 from django.shortcuts import render
 # Setup logging
@@ -29,7 +29,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.parsers import MultiPartParser, FormParser
 from .serializers import PDFUploadSerializer
-from .models import ExtractedText
+from .models import StudentExtractedText
 
 # Setup logging
 logger = logging.getLogger(__name__)
@@ -81,7 +81,7 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import ExtractedText
+from .models import StudentExtractedText
 import os
 
 class PDFUploadView(APIView):
@@ -110,10 +110,10 @@ class PDFUploadView(APIView):
                 os.remove(temp_path)
 
             # Save extracted texts to the database
-            record = ExtractedText.objects.create(
-                file_name1=extracted_texts[0][0], text_content1=extracted_texts[0][1],
-                file_name2=extracted_texts[1][0], text_content2=extracted_texts[1][1],
-                file_name3=extracted_texts[2][0], text_content3=extracted_texts[2][1],
+            record = StudentExtractedText.objects.create(
+                student_name1=extracted_texts[0][0], stext_content1=extracted_texts[0][1],
+                student_name2=extracted_texts[1][0], stext_content2=extracted_texts[1][1],
+                student_name3=extracted_texts[2][0], stext_content3=extracted_texts[2][1],
             )
 
             return Response(
@@ -121,9 +121,9 @@ class PDFUploadView(APIView):
                     "message": "Text extracted and saved successfully!",
                     "record_id": record.id,
                     "extracted_texts": {
-                        "file1": {"file_name": record.file_name1, "text": record.text_content1},
-                        "file2": {"file_name": record.file_name2, "text": record.text_content2},
-                        "file3": {"file_name": record.file_name3, "text": record.text_content3},
+                        "file1": {"file_name": record.student_name1, "text": record.stext_content1},
+                        "file2": {"file_name": record.student_name1, "text": record.stext_content2},
+                        "file3": {"file_name": record.student_name1, "text": record.stext_content3},
                     },
                 },
                 status=status.HTTP_200_OK,
